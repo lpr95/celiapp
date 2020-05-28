@@ -61,20 +61,12 @@
     "react-native-tab-view": "^2.14.0",
     "react-native-vector-icons": "^6.4.2",
     "react-native-web": "~0.11.7",
-    "react-navigation": "^3.0.9",
+    "react-navigation": "^4.3.9",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
-    "jest-expo": "^35.0.0",
-    "jest": "23.6.0",
-    "shortid": "^2.2.15",
-    "babel-preset-expo": "~8.0.0",
-    "babel-preset-react-native": "^4.0.1",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-decorators": "^7.1.2",
-    "babel-jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.48.0",
-    "react-test-renderer": "16.5.0"
+    "babel-preset-expo": "^7.0.0",
+    "jest-expo": "^35.0.0"
   },
   "private": true
 }

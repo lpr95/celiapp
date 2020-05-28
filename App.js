@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, AppState } from 'react-native';
-import AppNavigator from './src/navigation/AppNavigator';
+//import AppNavigator from './src/navigation/AppNavigator';
+import Navigation from './src/navigation/MainTabNavigator'
 import LoadingScreen from './src/screens/LoadingScreen';
 import DatabaseManager from './src/manager/DatabaseManager';
 import LanguageManager from './src/manager/LanguageManager';
@@ -100,7 +101,8 @@ export default class App extends React.Component {
         {this.state.isSplashReady == false 
           ? null 
           : this.state.hasUserId 
-            ? <AppNavigator/>
+            ? <TabNavigation />
+            //?<AppNavigator />
             : <UsernameDialog onUsername ={this.handleNewUsername}/>
         }
         <LoadingScreen hide={this.state.isAppReady} style={styles.loading}/>
