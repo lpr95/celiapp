@@ -47,6 +47,9 @@ import GearScreen from "../screens/GearScreen";
 import SymptomTrackerMoreSymptomsScreen from "../screens/SymptomTrackerMoreSymptomsScreen";
 import SymptomTrackerAddNewScreen from "../screens/SymptomTrackerAddNewScreen";
 
+//analytics part
+//import Amplitude from "expo-analytics-amplitude";
+
 @observer
 class GlutenbuddyRoot extends React.Component {
   static navigationOptions = ({ navigation }) => ({

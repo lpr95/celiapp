@@ -13,6 +13,31 @@ import { Button } from 'react-native-elements';
 
 import LOGO from '../assets/images/web_hi_res_512.png';
 import { createStyles, maxHeight } from 'react-native-media-queries'; 
+
+/****************analytics part*********************/
+//import Amplitude from "expo-analytics-amplitude";
+//import amplitude from "amplitude-js";
+//import {amplitude} from 'amplitude-js';
+
+const events = {
+  USER_LOGGED_IN: 'USER_LOGGED_IN',
+  USER_CREATED_ACCOUNT: 'USER_CREATED_ACCOUNT'
+};
+
+
+
+/*let isInitialized = false;
+const apiKey = 'bc85df54a542d4664b2a686624fd26bd';
+const initialize = () => {
+  if (!Environment.isProduction || !apiKey) {
+    return;
+  }
+
+  Amplitude.initialize(apiKey);
+  isInitialized = true;
+};*/
+/******************************************* */
+
 export default class UsernameDialog extends React.Component {
   constructor(props){
     super(props);
@@ -30,6 +55,19 @@ export default class UsernameDialog extends React.Component {
   }
 
   render() {
+
+    /*const amplitude = require('amplitude-js');
+
+  amplitude.getInstance().init("bc85df54a542d4664b2a686624fd26bd");
+  amplitude.getInstance().setUserId('0cc82db6-3677');
+  amplitude.getInstance().logEvent("view dashboard", {
+  "dashboard id": "id",
+  "dashboard load time ms": 200,
+  "is owner": false,
+});*/
+
+    //Amplitude.getInstance().logEvent('USER_LOGGED_IN');
+    //Amplitude.logEvent('USER_LOGGED_IN');
     return (
       <View style={{...styles.container,
                     width: Dimensions.get('window').width,
