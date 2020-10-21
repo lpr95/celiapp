@@ -254,14 +254,17 @@ export default class FoodDiaryScreen extends React.Component{
     render() {
 
         const marginToUse = ((this.state.keyboardOpen) ? 300 : 0);
-        const tags = [LanguageManager.getInstance().getText("GLUTEN"), LanguageManager.getInstance().getText("NO_GLUTEN"), LanguageManager.getInstance().getText("UNSURE")];
-        const meals = [LanguageManager.getInstance().getText("BREAKFAST"), LanguageManager.getInstance().getText("LUNCH"), LanguageManager.getInstance().getText("DINNER"), LanguageManager.getInstance().getText("SNACK")];
+        const gender = [LanguageManager.getInstance().getText("MALE"), LanguageManager.getInstance().getText("FEMALE"), LanguageManager.getInstance().getText("DIVERSE")];
+        const celiac = [LanguageManager.getInstance().getText("CELIAC_SENSITIVE"), LanguageManager.getInstance().getText("NON_CELIAC_SENSITIVE")];
+        const healthAppXp = [LanguageManager.getInstance().getText("HEALTH_APP_EXPERIENCE_YES"), LanguageManager.getInstance().getText("HEALTH_APP_EXPERIENCE_NO")];
+        
+        //const meals = [LanguageManager.getInstance().getText("BREAKFAST"), LanguageManager.getInstance().getText("LUNCH"), LanguageManager.getInstance().getText("DINNER"), LanguageManager.getInstance().getText("SNACK")];
         return (
             <ScrollView style={{marginBottom: marginToUse}}>
-                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("DATE")}/>
+                {/* <HorizontalLineWithText text = {LanguageManager.getInstance().getText("DATE")}/>
                 <DayChooser ref={component => this._dayChooser = component} date = {this.state.selectedDateAndTime} onDateChanged={this.dateEditedHandler}/>
                 <HorizontalLineWithText text = {LanguageManager.getInstance().getText("TIME")}/>
-                <TimePicker ref={component => this._timePicker = component} textString = "EATEN_AT" onTimeChanged={this.timeEditedHandler}/>
+                <TimePicker ref={component => this._timePicker = component} textString = "EATEN_AT" onTimeChanged={this.timeEditedHandler}/> 
                 <HorizontalLineWithText text = {LanguageManager.getInstance().getText("TYPES")}/>
                 <FoodDiaryTagEdit ref={component => this._meal = component} all={meals} selected={this.state.selectedMealKey} isExclusive={true} onTagChanged={this.mealChangedHandler}/>
                 <HorizontalLineWithText text = {LanguageManager.getInstance().getText("MEAL_NAME")}/>
@@ -278,17 +281,30 @@ export default class FoodDiaryScreen extends React.Component{
                   onTextChanged={this.noteEditedHandler}
                   style={{Top: 10}}
                   placeholderText= {LanguageManager.getInstance().getText("MEAL_NOTES_PLACEHOLDER")}
-                />
-                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("TAGS")}/>
-                <FoodDiaryTagEdit ref={component => this._class = component} all={tags} selected={this.state.selectedClassKey} isExclusive={true} onTagChanged={this.classChangedHandler}/>
-                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("IMAGE")}/>
+                />*/}
+                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("GENDER")}/>
+                <FoodDiaryTagEdit ref={component => this._class = component} all={gender} selected={this.state.selectedClassKey} isExclusive={true} onTagChanged={this.classChangedHandler}/>
+                
+                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("CELIAC")}/>
+                <FoodDiaryTagEdit ref={component => this._class = component} all={celiac} selected={this.state.selectedClassKey} isExclusive={true} onTagChanged={this.classChangedHandler}/>
+               
+                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("HEALTH_APP_EXPERIENCE")}/>
+                <FoodDiaryTagEdit ref={component => this._class = component} all={healthAppXp} selected={this.state.selectedClassKey} isExclusive={true} onTagChanged={this.classChangedHandler}/>
+               
+               
+                <HorizontalLineWithText text = {LanguageManager.getInstance().getText("MOBILE_DEVICES_USAGE_FREQUENCY")}/>
+                <View style={{alignItems: 'center'}}>
+                    <FoodDiaryRatingBar ref={component => this._rating = component}  onRatingChanged={this.ratingEditedHandler}/>
+                </View>
+               
+                {/*<HorizontalLineWithText text = {LanguageManager.getInstance().getText("IMAGE")}/>
                 <View style={{alignItems: 'center'}}>
                     <FoodDiaryImageEdit navigation = {this.props.navigation} onPictureTaken={(image) => this.setState({photo: image})}/>
                 </View>
                 <HorizontalLineWithText text = {LanguageManager.getInstance().getText("RATING")}/>
                 <View style={{alignItems: 'center'}}>
                     <FoodDiaryRatingBar ref={component => this._rating = component}  onRatingChanged={this.ratingEditedHandler}/>
-                </View> 
+                </View>  */}
                 <View>
                     <Dialog.Container visible={this.state.saveAsEmptyFoodDialogVisible}>
                         <Dialog.Title>{LanguageManager.getInstance().getText("SAVE_EMPTY_FOOD")}</Dialog.Title>

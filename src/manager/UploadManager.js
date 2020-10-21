@@ -17,6 +17,7 @@ export default class UploadManager {
   }
 
   getToken() {
+    console.log("token-->>", this.token)
     return this.token;
   }
   

@@ -87,10 +87,15 @@ export default class App extends React.Component {
 
   uploadFreshData() {
     token = this.getUploadServiceAuthToken()
+    console.log("mytoken:", token)
     //TODO get new auth token
+    if(!token) {
+      console.log("no token set!")
+    }
     if (token) {
       UploadManager.getInstance().setToken(token);
       DatabaseManager.getInstance().fetchUnrecordedData((_, error) => console.error(error), (_, data) => {
+        console.log("mydata", data)
         UploadManager.getInstance().uploadData(data, () => { DatabaseManager.getInstance().updateLastRecorded(); });
       });
     }
