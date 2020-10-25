@@ -12,10 +12,9 @@ class EmotionStore {
     @observable mouthType = "Smile";
     @observable accessoriesType = "Blank"; // No Glasses if avatar is sad
     @observable accessoriesTypeEmotion = "Blank";
-    currentEmotion = 3;
+
     @action
     setEmotionId = (num) => {
-        this.currentEmotion = num;
         switch (num){
             case 1:
             this.setSuperSad();
@@ -81,13 +80,7 @@ class EmotionStore {
         this.mouthType="ScreamOpen";
         this.accessoriesTypeEmotion="Blank"; // for testing purpose
     }
-
-    getCurrentEmotion(){
-        return this.currentEmotion;
-    }
 }
-
-
 
 const schema = {
     eyeType: true,

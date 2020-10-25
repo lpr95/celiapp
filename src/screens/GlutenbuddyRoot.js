@@ -46,8 +46,6 @@ import CameraScreen from "../screens/CameraScreen";
 import GearScreen from "../screens/GearScreen";
 import SymptomTrackerMoreSymptomsScreen from "../screens/SymptomTrackerMoreSymptomsScreen";
 import SymptomTrackerAddNewScreen from "../screens/SymptomTrackerAddNewScreen";
-import EmoteTrackerSymbol from "../components/EmoteTracker/EmoteTrackerSymbol";
-import EmotionDisplayIcon from "../components/EmotionDisplayIcon";
 
 //analytics part
 //import Amplitude from "expo-analytics-amplitude";
@@ -99,7 +97,6 @@ class GlutenbuddyRoot extends React.Component {
           >
             <Avatar
               size={store.size}
-              style={styles.avatar}
               avatarStyle={store.avatarStyle}
               topType={store.topType}
               hairColor={store.hairColor}
@@ -112,8 +109,48 @@ class GlutenbuddyRoot extends React.Component {
               eyebrowType={emotionStore.eyebrowType}
               mouthType={emotionStore.mouthType}
             />
-            <EmotionDisplayIcon style={styles.emotiondisplay} emotionId={emotionStore.getCurrentEmotion()}></EmotionDisplayIcon>
           </TouchableOpacity>
+
+          <View style={styles.centerComponent}>
+            <View style={styles.parent}>
+              <TouchableOpacity
+                style={[styles.touchable]}
+                onPress={() => this.props.navigation.navigate("Wardrobe")}
+              >
+                <Image
+                  style={styles.images}
+                  source={require("../assets/images/avatar_menu/checkroom-24px.png")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.touchable]}
+                onPress={() => this.props.navigation.navigate("Challenges")}
+              >
+                <Image
+                  style={styles.images}
+                  source={require("../assets/images/avatar_menu/flag-24px.png")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.touchable]}
+                onPress={() => this.props.navigation.navigate("Achievements")}
+              >
+                <Image
+                  style={styles.images}
+                  source={require("../assets/images/avatar_menu/emoji_events-24px.png")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.touchable]}
+                onPress={() => this.props.navigation.navigate("ChallengesTest")}
+              >
+                <Image
+                  style={styles.images}
+                  source={require("../assets/images/avatar_menu/settings-24px.png")}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
           <MenuButton navigation={this.props.navigation} />
         </ImageBackground>
       </View>
@@ -263,11 +300,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  avatar: {
-    flex: 0.8
-  },
-  emotiondisplay: {
-    flex: 0.2
-  }
-
 });
