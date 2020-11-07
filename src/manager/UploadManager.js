@@ -70,6 +70,9 @@ export default class UploadManager {
       if (response.ok) {
 
         console.log('Registration successful'+' '+'Status: '+response.status);
+
+        //setToken after successful login
+        this.setToken(response.getToken);
   
         onSuccess();
       } else {
