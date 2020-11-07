@@ -1,3 +1,5 @@
+import gamificationState from "../../src/manager/buddyManager/LoggingStore"
+
 export default class UploadManager {
   static UPLOAD_DATA_URL = 'https://jira.itcarlow.ie/desqol/upload_data';
   //static REGISTRY_USER_URL ='https://jira.itcarlow.ie/desqol-auth/registration';
@@ -20,6 +22,22 @@ export default class UploadManager {
 
   getToken() {
     return this.token;
+  }
+
+  setGamifiy(gamify){
+    this.gamify = gamify;
+  }
+
+  getGamify(){
+    return this.gamify;
+  }
+
+  setUser(user){
+    this.user = user;
+  }
+
+  getUser(){
+    return this.user;
   }
   
   uploadData(data, onSuccess) {
@@ -45,13 +63,14 @@ export default class UploadManager {
     });
   }
 
-  registerNewUser(data, onSuccess) {
+  logInUser(data, onSuccess) {
    // console.log('Register new user ' + this.token);
 
    /***************Payload to register new User*********************************/
    // var registery = JSON.stringify({"email":data.email,"password":data.password,"displayName":data.displayName});
 
    /****************Payload to login new User********************************* */
+   //console.log(">>>>>>>"+" "+data.email);
     var login = JSON.stringify({"email":data.email,"password":data.password});
 
 
@@ -67,15 +86,25 @@ export default class UploadManager {
     }).then((response) => {
       if (response.ok) {
 
-        console.log('Registration successful'+' '+'Status: '+response.status);
+        console.log('Log in successful'+' '+'Status: '+response.statusText);
+       // console.log("GAMIFY"+response);
 
         //setToken after successful login
         this.setToken(response.getToken);
-  
-        onSuccess();
+        return response;
+
       } else {
-        console.warn('Registration failed!'+' '+'Status: '+response.status);
+        console.warn('Log in failed!'+' '+'Status: '+response.statusText);
       }
+    }).then((response)=>{
+        return response.json();
+    }).then((responseJson)=>{
+
+        this.setToken(JSON.stringify(responseJson.token));
+        gamificationState.setGamificationFlag(JSON.stringify(responseJson.gamify));
+        gamificationState.setUserId(data.email);
+        
+        //onSuccess();
     });
   }
 }

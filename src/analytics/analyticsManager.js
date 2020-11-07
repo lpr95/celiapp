@@ -1,6 +1,5 @@
 import gamificationState from "../manager/buddyManager/LoggingStore";
 import DatabaseManager from "../manager/DatabaseManager";
-import Interactions from "../constants/Interactions";
 
 
 
@@ -8,12 +7,17 @@ export default class analyticsManager{
 
 
 
-    static initializeAnalytics(email){
-        this.email = email;
+    static initializeAnalytics(user,gamify){
+        this.user = user;
+        gamificationState.setUserId(user);
+
+        this.gamify = gamify;
+        gamificationState.setGamificationFlag(gamify);
     }
+    s
     static addLog(componentName, interactionInfo = ""){
         var newlog = {}
-        newlog.userId = this.email;
+        newlog.userId = gamificationState.userId;
         newlog.interactionInfo = interactionInfo;
         newlog.componentName = componentName;
         newlog.timestamp= Date.now();

@@ -9,6 +9,7 @@ import GearManager from './src/manager/GearManager';
 import UploadManager from './src/manager/UploadManager';
 import NotificationManager from './src/manager/NotificationManager';
 import UsernameDialog from './src/components/UsernameDialog';
+import AnalyticsManager from './src/analytics/analyticsManager';
 
 
 import { } from 'react-native-dotenv';
@@ -77,10 +78,10 @@ export default class App extends React.Component {
   handleNewUsername = (userName) => {
     //console.log("Saving username:" + JSON.stringify(userName.nickname));
     /*'''''''''''''''''''''''''''''''''*register a new User ****************************/
-    //UploadManager.getInstance().registerNewUser(userName,(error)=>{alert(error),null});
+    UploadManager.getInstance().logInUser(userName,(error)=>{alert(error),null});
 
     /***********************************save user to local DB************************ */
-    DatabaseManager.getInstance().saveSettings(userId, userName, (error) => {alert(error)}, null);
+    DatabaseManager.getInstance().saveSettings('userId', userName, (error) => {alert(error)}, null);
     
     this.setState({ 
       hasUserId : true,
@@ -93,7 +94,8 @@ export default class App extends React.Component {
     token = this.getUploadServiceAuthToken()
     //TODO get new auth token
     if (token) {
-      console.log("User logged in -->", token);
+      console.log("User logged in -->", token.email);
+      //AnalyticsManager.initializeAnalytics(token.email);
       UploadManager.getInstance().setToken(token.email);
       DatabaseManager.getInstance().fetchUnrecordedData((_, error) => console.error(error), (_, data) => {console.log("--x>", JSON.stringify(data), "<x--")
       UploadManager.getInstance().uploadData(data, () => { DatabaseManager.getInstance().updateLastRecorded(); });

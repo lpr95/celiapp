@@ -16,17 +16,17 @@ import { createStyles, maxHeight } from 'react-native-media-queries';
 export default class UsernameDialog extends React.Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password:'', displayName:'' };
+    this.state = { email: '', password:'', displayName:'' };
   }
 
-  userNameIsValid = () => !!this.state.username && (this.state.username.length > 3)
+  userNameIsValid = () => !!this.state.email && (this.state.email.length > 3)
 
   buttonDisabled = () => !this.userNameIsValid()
 
   //updateUsername = (name) => this.setState({username: name})
 
   componentDidMount(){
-    this.username.focus();
+    this.emailInput.focus();
   }
 
   render() {
@@ -41,11 +41,11 @@ export default class UsernameDialog extends React.Component {
           <Text>Welcome the 21-day challenge!</Text>
           <Text>Please provide your user data to get started:</Text>
           <TextInput
-            value={this.state.username}
+            value={this.state.email}
             placeholder="email"
-            ref={(input) => { this.usernameInput = input; }}
-            style={styles.usernameInput}
-            onChangeText={(username) => this.setState({username})} />
+            ref={(input) => { this.emailInput = input; }}
+            style={styles.emailInput}
+            onChangeText={(email) => this.setState({email})} />
 {/* 
           <TextInput
             placeholder="nickname"
@@ -94,7 +94,7 @@ var base = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 1,
   },
-  usernameInput: {
+  emailInput: {
     width: 300,
     height: 40,
     borderColor: 'gray',

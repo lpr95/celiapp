@@ -6,9 +6,21 @@ const hydrate = create({
   storage: AsyncStorage,
 });
 
-class LoggingStore {  
+class LoggingStore { 
 
-@observable gamificationFlag = false;
+
+@observable gamificationFlag= null;
+@observable userId=null;
+
+  @action
+setGamificationFlag = (flag) => {
+  this.gamificationFlag = flag;
+};
+
+@action
+setUserId = (userId) => {
+  this.userId = userId;
+}
 
   @action
   changeGamificationFlag = () => {
@@ -16,14 +28,4 @@ class LoggingStore {
   };
 }
 
-const schema = {
-  gamificationFlag: true,
-};
-
-const store = new LoggingStore();
-
-const persistingStore = persist(schema)(store);
-
-hydrate("gamificationFlag", persistingStore);
-
-export default persistingStore;
+export default new LoggingStore();
